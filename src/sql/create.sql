@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS public.users
     email character varying(255) COLLATE pg_catalog."default" NOT NULL,
     password character varying(255) COLLATE pg_catalog."default" NOT NULL,
     created_at timestamp without time zone,
-    avatar integer,
+    avatar integer NOT NULL DEFAULT 1,
     onboarding integer DEFAULT 0,
     hireable boolean,
     about character varying(500) COLLATE pg_catalog."default",
@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS public.organizations
     slug character varying(100) COLLATE pg_catalog."default",
     logo_id integer DEFAULT 1,
     created_at timestamp without time zone NOT NULL,
+    about character varying(400) COLLATE pg_catalog."default",
     CONSTRAINT organizations_pkey PRIMARY KEY (id),
     CONSTRAINT organizations_slug_key UNIQUE (slug)
 );
