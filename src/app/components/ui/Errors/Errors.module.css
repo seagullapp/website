@@ -1,0 +1,16 @@
+
+.ErrorBanner {
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid rgb(255, 83, 83);
+    color: rgb(255, 83, 83);
+}
+
+.header {
+    font-weight: 700;
+    font-size: 1em;
+}
+
+.text {
+    
+}

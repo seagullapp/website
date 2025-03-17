@@ -1,0 +1,8 @@
+.container {
+    margin-top: 30px;
+    max-width: var(--max-width);
+}
+
+.userWidget {
+    padding: 20px 30px;
+}

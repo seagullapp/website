@@ -1,0 +1,15 @@
+.button {
+    transition: .5s;
+    border: dashed 2px var(--primary-yellow);
+    padding: 5px 7px;
+    border-radius: 10px;
+    color: var(--primary-yellow);
+    font-weight: 600;
+    background-color: rgba(var(--primary-yellow-num), 0.05);
+    font-size: .9em;
+}
+
+.button:hover {
+    transition: .5s;
+    background-color: rgba(var(--primary-yellow-num), 0.15);
+}
