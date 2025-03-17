@@ -146,13 +146,12 @@ export default async function getUser(slug : string, isUser?: boolean) : Promise
 
     } catch (error) {
 
-        console.log("[SERVER ACTION] getUser()", error)
-
         return { 
             success: false, 
             status: 400, 
             msg: error ? `${`${error}`.includes("error: ") ? `${error}`.split("error: ")[1].trim() : error}` : "A server error occurred",
         }
+
     }
 
 }

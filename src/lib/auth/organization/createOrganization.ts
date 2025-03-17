@@ -71,6 +71,7 @@ export default async function createOrganization(data : Props) : Promise<Result>
                 "organization-logo"
             )
 
+            console.log(uploadLogoResult)
             if (uploadLogoResult.success) { logo_id = uploadLogoResult.file.id }
             else return { success: true, msg: uploadLogoResult.msg, status: 400 } 
 

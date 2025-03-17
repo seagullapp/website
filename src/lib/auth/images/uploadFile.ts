@@ -61,8 +61,6 @@ export default async function uploadFile(data : Data, restrictions : Restriction
     if (!acceptedFormat) return { success: false, msg: "Invalid file", status: 400 } 
     if (!acceptedType) return { success: false, msg: "Invalid file type", status: 400 } 
 
-    console.log(data.name)
-
     if (!data.name || data.name.trim().length < 2) return { success: false, msg: "Invalid file name", status: 400 } 
     if (data.name.length > 99) return { success: false, msg: "File name is too long", status: 400 } 
 

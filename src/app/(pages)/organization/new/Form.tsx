@@ -56,7 +56,7 @@ export default function Form() {
             if (result.status === 403) { router.push("/login"); throw "Not authenticated"; }
             if (!result.success) throw result.msg
 
-            router.push(`/organization/${result.data?.slug}`)
+            router.push(`/organization/${slug.toLowerCase().trim().replaceAll(" ", "")}`)
             
         } catch(error) {
             setError({isError: true, msg: `${error}`})
@@ -86,7 +86,8 @@ export default function Form() {
                 uploadState={uploadState}
                 setUploadState={setUploadState}
                 customizations={{
-                    uploadText: "Upload logo"
+                    uploadText: "Upload logo",
+                    previewClassName: "border-2 border-tertiary-bg"
                 }}
                 restrictions={{
                     acceptedTypes: ["png", "jpg", "jpeg", "gif", "webp", "bmp", "svg", "apng", "ico", "tiff", "avif"],
