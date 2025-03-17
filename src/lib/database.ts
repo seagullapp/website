@@ -15,7 +15,8 @@ const pool = new Pool({
     user: process.env.DB_USER,
     port: 5432,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE
+    database: process.env.DB_DATABASE,
+    ssl: true // disabled if using local
 });
 
 export async function getPostgresVersion() {
