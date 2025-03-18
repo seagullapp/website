@@ -2,20 +2,20 @@
 import styles from "./signupForm.module.css"
 
 import { useRouter } from "next/navigation";
+import { useSearchParams } from 'next/navigation'
 
 import { getCurrentSession } from "@/lib/auth/cookies/getCurrentSession";
 import createUser from "@/lib/auth/createUser";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import { setUser } from "@/app/redux/slices/userSlice";
 
 export default function SignupForm() {
 
     const router = useRouter()
+    const searchParams = useSearchParams()
     const [error, setError] = useState<{isError: boolean, msg: string}>({isError: false, msg: ""})
     const dispatch = useDispatch();
-    // const user = useSelector((state: RootState) => state.user);
 
     async function handleSubmit(e: React.FormEvent | any) {
         
@@ -91,7 +91,8 @@ export default function SignupForm() {
             return;
         }
         
-        router.push("/profile")
+        const redirect = searchParams.get('redirect') === null ? "/profile" : searchParams.get('redirect')
+        router.push(redirect ? redirect : "/profile")
         dispatch(setUser(result.user ))
 
     }

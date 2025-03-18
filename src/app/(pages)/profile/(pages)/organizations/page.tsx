@@ -1,53 +1,29 @@
 "use client"
-import { useEffect, useState } from "react"
-
-import getUserOwnedOrganization from "@/lib/organization/getUserOwnedOrganization"
+import HorizontalOrganizationWidget from "@/app/components/Organization/HorizontalOrganizationWidget/HorizontalOrganizationWidget"
 
 // Redux
 import { useSelector } from "react-redux"
-import { useDispatch } from "react-redux"
 
 // Types
 import { RootState } from "@/app/redux/store"
-import { Organization } from "@/types/organization/organization"
-import { updateUser } from "@/app/redux/slices/userSlice"
 
 export default function OrganizationPage() {
 
-    const [organizations, setOrganizations] = useState<Organization[]>([])
     const user = useSelector((state: RootState) => state.user)
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-
-        async function fetchOrganizations() {
-            const result = await getUserOwnedOrganization(user.id)
-
-            console.log(result)
-
-            if (!result.success) { setOrganizations([]); return }
-
-            // dispatch(updateUser({organizations: result.data}))
-            setOrganizations(result.data)
-        }
-
-        fetchOrganizations()
-
-    }, [user])
 
     return ( <div>
 
         <div className="top mb-2">
             <h3 className='font-semibold'> Organizations </h3>
-            <p className="grey"> {organizations.length > 0 ? "Organizations you own" : "Communities that help you grow" } </p>
+            <p className="grey"> {(user?.organizations && user?.organizations.length > 0) ? "Organizations you own" : "Communities that help you grow" } </p>
         </div>
 
-        {organizations.length > 0 ? <>
+        {(user?.organizations && user?.organizations.length > 0) ? <>
 
-            {organizations.map((org, index) => {
+            {user.organizations.map((org, index) => {
 
-                return ( <div key={index}>
-                    {org.name}
+                return ( <div key={index}>  
+                    <HorizontalOrganizationWidget organization={org} className="my-2"/>
                 </div> )
 
             })}
