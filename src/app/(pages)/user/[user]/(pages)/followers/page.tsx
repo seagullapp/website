@@ -1,15 +1,17 @@
 import getUser from "@/lib/user/getUser";
+import getUserFollowers from "@/lib/user/connections/getUserFollowers";
+import HorizontalUserWidget from "@/app/components/User/summaries/HorizontalUserWidget/HorizontalUserWidget";
+import Link from "next/link";
 import { notFound } from "next/navigation";
+
+// Icons
+import { FaArrowLeft } from "react-icons/fa6";
 
 // Styles
 import styles from "./page.module.css"
 
 // Types
 import { User } from "@/types/auth";
-import getUserFollowers from "@/lib/user/connections/getUserFollowers";
-import { FaArrowLeft } from "react-icons/fa6";
-import Link from "next/link";
-import HorizontalUserWidget from "@/app/components/User/summaries/HorizontalUserWidget/HorizontalUserWidget";
 
 interface Props {
     params: Promise<{ user: string }>

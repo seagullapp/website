@@ -1,7 +1,7 @@
 "use server"
 
 import { Organization } from "@/types/organization/organization"
-import { query } from "../database"
+import { query } from "../../database"
 
 /**
  * @params id - The user ID 
@@ -50,13 +50,25 @@ export default async function getUserOwnedOrganization(id : number, isCurrentUse
 
         if (!rows || !rows.rowCount) throw "A database error occurred"
         
-        if (rows.rowCount <= 0) return { success: true, msg: "No organizations found", status: 404, data: [] }
+        if (rows.rowCount <= 0 || rows.rows.length <= 0) return { success: true, msg: "No organizations found", status: 404, data: [] }
 
         return { 
-            success: true, 
+            success: true,
             msg: "Organizations found",
             status: 200,
-            data: rows.rows
+            data: rows.rows.map((row : Organization) => { return {
+                id: row.id,
+                owner_id: row.owner_id,
+                owner_slug: row.owner_slug,
+                owner_first_name: row.owner_first_name,
+                owner_last_name: row.owner_last_name,
+                name: row.name,
+                slug: row.slug,
+                logo_id: row.logo_id,
+                logo_url: row.logo_url,
+                created_at: row.created_at ? new Date(row.created_at).toISOString() : null,
+                about: row.about
+        }})
         }
 
     } catch (error : any) {
