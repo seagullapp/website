@@ -10,6 +10,7 @@ import { updateUser } from "@/app/redux/slices/userSlice";
 import { RootState } from "@/app/redux/store";
 import { useDispatch } from "react-redux";
 import unfollowUser from "@/lib/auth/connections/unfollowUser";
+import { UserFollowed } from "@/types/user_followed";
 
 interface Props {
     followingId: number | null
@@ -36,7 +37,7 @@ export default function FollowButton( {followingId} : Props ) {
             return;    
         }
 
-        const newFollowedList = [...user.followed, {
+        let newFollowedList : UserFollowed[] = [...user.followed, {
             follower: user.id,
             followed_id: followingId,
             id: followingId, 
@@ -46,8 +47,9 @@ export default function FollowButton( {followingId} : Props ) {
             followed_avatar: 1,
             followed_avatar_url: "",
             created_at: new Date().toISOString(),
-        }]
+        } ]
 
+        console.log(newFollowedList)
         dispatch(updateUser( { followed: newFollowedList } ))
 
     }
@@ -76,7 +78,7 @@ export default function FollowButton( {followingId} : Props ) {
 
     if (user.id !== followingId) return ( <> 
 
-        {!user.followed.filter((follower) => follower.followed_id === followingId).length ? 
+        {!user.followed.filter((followed) => followed.followed_id === followingId).length ? 
             <button onClick={handleFollow} className='button white pill'> Follow </button> 
         :
             <button onClick={handleUnfollow} className='button red border pill'> Unfollow </button> 

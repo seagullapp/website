@@ -15,6 +15,8 @@ import { UserFollowed } from "@/types/user_followed"
 import getUserExperience from "./getUserExperience"
 import { getCurrentSession } from "../auth/cookies/getCurrentSession"
 import { Experience } from "@/types/experience"
+import { Organization } from "@/types/organization/organization"
+import getUserOwnedOrganization from "../auth/organization/getUserOwnedOrganization"
 
 type Result = {
     success: false,
@@ -28,11 +30,11 @@ type Result = {
     user: User
 }
 
-export default async function getUser(slug : string, isUser?: boolean) : Promise<Result> {
+export default async function getUser(slug : string, isCurrentUser?: boolean) : Promise<Result> {
 
     let currentUser = false;
-    if (!isUser) currentUser = false;
-    else currentUser = isUser;
+    if (!isCurrentUser) currentUser = false;
+    else currentUser = isCurrentUser;
     
     try {
 
@@ -105,7 +107,7 @@ export default async function getUser(slug : string, isUser?: boolean) : Promise
         // FETCH FOLLOWED 
         let followed : UserFollowed[] = []
 
-        if (followersCount) {
+        if (followingCount) {
             const userFollowers = await getUserFollowed(basic.id)
 
             if (userFollowers.success && userFollowers.data) {
@@ -118,6 +120,15 @@ export default async function getUser(slug : string, isUser?: boolean) : Promise
         let experience : Experience[] = [];
         if (experienceResult.success && experienceResult.data) { 
             experience = experienceResult.data
+        }
+
+        // FETCH OWNED ORGANIZATIONS
+        let organizations : Organization[] = []
+        if (currentUser) {
+            const organizationResult = await getUserOwnedOrganization(basic.id, currentUser)
+            if (organizationResult.success) {
+                organizations = organizationResult.data
+            }
         }
 
         return {
@@ -140,19 +151,19 @@ export default async function getUser(slug : string, isUser?: boolean) : Promise
                 followingCount: followingCount,
                 followers: followers,
                 followed: followed,
-                experience: experience
+                experience: experience,
+                organizations: organizations
             }
         }
 
     } catch (error) {
-
-        console.log("[SERVER ACTION] getUser()", error)
 
         return { 
             success: false, 
             status: 400, 
             msg: error ? `${`${error}`.includes("error: ") ? `${error}`.split("error: ")[1].trim() : error}` : "A server error occurred",
         }
+
     }
 
 }

@@ -18,6 +18,7 @@ interface Props {
 
     customizations?: {
         className?: string,
+        previewClassName?: string,
         uploadText?: string | null,
     }
     restrictions: { 
@@ -98,7 +99,7 @@ export default function ImageDropzone( {img, setImg, uploadState, setUploadState
 
                             {/* Image preview */}
                             {img && uploadState.state === "selected" ? (
-                                <img src={img.src} alt={`${img}`} className="w-[200px] h-[200px] object-contain bg-secondary-bg rounded-xl" />
+                                <img src={img.src} alt={`${img}`} className={`w-[200px] h-[200px] object-contain bg-secondary-bg rounded-xl ${customizations?.previewClassName && customizations?.previewClassName}`} />
                             ) : (
                                 <FaImage className={`text-[100px] ${uploadState.state === "error" ? `text-red-500/60 ${styles.error}` : "text-white/20"}`} />
                             )}
