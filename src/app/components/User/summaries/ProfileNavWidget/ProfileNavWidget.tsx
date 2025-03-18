@@ -18,7 +18,7 @@ interface Props {
 
 export default function ProfileNavWidget( { user, className } : Props ) {
 
-    return ( <div className={`absolute widget ${className && className}`}>
+    return ( <div className={`absolute widget ${className && className} shadow-xl`}>
 
         {/* Top */}
         <div className="flex items-center gap-2">
