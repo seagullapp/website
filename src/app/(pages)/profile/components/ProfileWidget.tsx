@@ -16,6 +16,7 @@ import { UserTag } from "@/types/user_tag";
 import EditAbout from "@/app/components/User/About/EditAbout";
 import Link from "next/link";
 import Avatar from "@/app/components/User/Avatar/Avatar";
+import AddLabel from "@/app/components/ui/Modals/addFirstTags/AddLabel";
 
 interface Props {
     user: User;
@@ -154,8 +155,16 @@ export default function ProfileWidget({
         })
     }, [about])
 
+    // ADD FIRST TAGS
+    const [firstLabelTag, setFirstLabelTag] = useState<false | string>(false)
+    const [showAddFirstLabelTag, setShowAddFirstLabelTag] = useState<boolean>(false)
+    const [firstServiceTag, setFirstServiceTag] = useState<false | string>(false)
+    const [firstSkillTag, setFirstSkillTag] = useState<false | string>(false)
+    
     return ( 
         <div className={`widget ${editMode ? "dashed" : ""} rounded items-center gap-3 ${styles.userWidget}`}>
+
+            {showAddFirstLabelTag !== false && <AddLabel setShow={setShowAddFirstLabelTag}/> }
 
             {/* BASIC USER DATA */}
             <div className="flex gap-3 items-center">
@@ -183,7 +192,7 @@ export default function ProfileWidget({
                             <button onClick={() => setEditInfoMode(editInfoMode === "label" ? null : "label")} className='cursor-pointer text-sm grey hover:text-white'> <FaPlusMinus /> </button>
                         </div>
                     :
-                        <HorizontalAdd> Add Labels </HorizontalAdd>
+                        <HorizontalAdd onClick={() => setShowAddFirstLabelTag(true)}> Add Labels </HorizontalAdd>
                     }
                 </div>
             </div>
