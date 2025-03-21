@@ -1,6 +1,6 @@
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation";
-import SettingsSidebar from "./SettingsSidebar";
+import { Container } from "./Container";
 
 // Types
 interface Props {
@@ -18,18 +18,7 @@ export default async function SettingsPage( {children} : Props ) {
 
     return ( <div className='wrapper py-4'>
 
-        <div className='container'>
-
-            <h1 className='mb-1 grey'> Settings </h1>
-            <div className="grid grid-cols-[20%_80%]">
-                <SettingsSidebar />
-                
-                <div className='pl-5'>
-                    {children}
-                </div>
-            </div>
-
-        </div>
+        <Container> {children} </Container>
 
     </div> )
 }
