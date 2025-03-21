@@ -1,0 +1,20 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/(pages)/login/page": "app/(pages)/login/page.js",
+  "/(pages)/organization/new/page": "app/(pages)/organization/new/page.js",
+  "/(pages)/signup/page": "app/(pages)/signup/page.js",
+  "/page": "app/page.js",
+  "/(pages)/organization/[slug]/page": "app/(pages)/organization/[slug]/page.js",
+  "/(pages)/user/[user]/(pages)/experience/page": "app/(pages)/user/[user]/(pages)/experience/page.js",
+  "/(pages)/user/[user]/(pages)/followers/page": "app/(pages)/user/[user]/(pages)/followers/page.js",
+  "/(pages)/user/[user]/(pages)/[...page]/page": "app/(pages)/user/[user]/(pages)/[...page]/page.js",
+  "/(pages)/settings/(pages)/page": "app/(pages)/settings/(pages)/page.js",
+  "/(pages)/user/[user]/(pages)/following/page": "app/(pages)/user/[user]/(pages)/following/page.js",
+  "/(pages)/user/[user]/(pages)/page": "app/(pages)/user/[user]/(pages)/page.js",
+  "/(pages)/user/[user]/(pages)/organizations/page": "app/(pages)/user/[user]/(pages)/organizations/page.js",
+  "/(pages)/profile/(pages)/page": "app/(pages)/profile/(pages)/page.js",
+  "/(pages)/profile/(pages)/experience/create/page": "app/(pages)/profile/(pages)/experience/create/page.js",
+  "/(pages)/profile/(pages)/experience/page": "app/(pages)/profile/(pages)/experience/page.js",
+  "/(pages)/profile/(pages)/organizations/page": "app/(pages)/profile/(pages)/organizations/page.js"
+}
