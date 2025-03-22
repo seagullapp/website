@@ -7,6 +7,8 @@ type Props = {
     children: React.ReactNode
 }
 
+export const runtime = 'edge';
+
 export default async function OrganizationLayout( {params, children} : Props ) {
 
     const slug = (await params).slug

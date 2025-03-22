@@ -12,6 +12,8 @@ type PropsMetadata = {
     params: Promise<{ user: string }>
 }
 
+export const runtime = 'edge';
+
 export async function generateMetadata( {params} : PropsMetadata ) : Promise<Metadata> {
 
     const slug = (await params).user

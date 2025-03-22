@@ -3,6 +3,8 @@ import { getCurrentSession } from "@/lib/auth/cookies/getCurrentSession";
 import LoginForm from "./LoginForm";
 import Link from "next/link";
 
+export const runtime = 'edge';
+
 export default async function SignupPage() {
 
     const { user } = await getCurrentSession();
